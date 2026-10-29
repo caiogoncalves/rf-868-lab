@@ -49,9 +49,4 @@ Radio: only transmit what you are allowed to. The ETSI limits for these sub-band
 Mains: the Duco box and similar units have mains voltage and a mains-referenced ground inside. Unplug first; leave 230 V wiring to an electrician.
 Use this on **your own** devices only. Do not publish device addresses or keys from your home.
 
-## Help wanted
-
-Captures from other Somfy io / Itho / Duco models, a CC1101 or SX1276 comparison, and anyone who has seen a solar io motor stop answering 2W while still obeying the remote.
-Open an issue and say what you measured. I was helped a lot by other people's repos; this is my way of giving back.
-
 License: MIT.
