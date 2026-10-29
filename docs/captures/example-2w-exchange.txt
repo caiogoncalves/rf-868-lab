@@ -1,0 +1,14 @@
+# Example of a two-way (2W) exchange, as printed by the sniffer.
+# Addresses are made up (AA0001 = actuator, BB0002 = hub, CC0003 = second actuator), CRCs recomputed.
+# Frame: b0 b1 | dst(3) | src(3) | cmd | params... | CRC16-KERMIT (little-endian on the air)
+#   b0 & 0x1F = N  ->  total frame length = N + 3 bytes
+#
+# 1) hub -> actuator: command (cmd 00). Preamble is long (~9800 bits, ~255 ms) so a sleeping actuator can catch it.
+Q f=868950 rssi=-29 pre=9800 len=17 crc=KERMIT hex=4E20AA0001BB00020001E7000000001C02
+# 2) actuator -> hub: challenge (cmd 3C + 6 random bytes), 12 ms later, SAME channel, short preamble (~100 bits)
+Q f=868950 rssi=-79 pre=102 len=17 crc=KERMIT hex=0E00BB0002AA00013C1122334455666E06
+# 3) hub -> actuator: authenticated answer (cmd 3D, keyed MAC over the challenge)   [not reproducible without the key]
+# 4) actuator -> hub: status (cmd 04) and it moves
+#
+# If nothing answers, the hub repeats the command about 5 times, ~0.37 s apart.
+# Replaying (1) yourself only makes the actuator send a NEW challenge (2); without step 3 nothing moves.

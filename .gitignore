@@ -1,0 +1,19 @@
+# Safety net only: keep private material OUTSIDE this folder.
+# Raw captures from your own home contain real device addresses.
+*.log
+captures-raw/
+private/
+.env
+*.key
+*.pem
+*.gpg
+secrets*
+credentials*
+tokens*
+# build output
+build/
+*.bin
+*.elf
+.pio/
+.vscode/
+__pycache__/
